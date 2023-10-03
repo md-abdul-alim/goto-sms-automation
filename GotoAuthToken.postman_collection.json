@@ -1,0 +1,60 @@
+{
+	"info": {
+		"_postman_id": "3438b160-61c1-4a45-863a-7a6519c338e1",
+		"name": "LocalGoto",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "GotoAuthToken",
+			"request": {
+				"auth": {
+					"type": "oauth2",
+					"oauth2": [
+						{
+							"key": "clientSecret",
+							"value": "KpUeGJVjvtltW7MsE0z2AKj2",
+							"type": "string"
+						},
+						{
+							"key": "clientId",
+							"value": "5c4dbe11-0659-42b0-a94b-76da93843322",
+							"type": "string"
+						},
+						{
+							"key": "accessTokenUrl",
+							"value": "https://authentication.logmeininc.com/oauth/token",
+							"type": "string"
+						},
+						{
+							"key": "authUrl",
+							"value": "https://authentication.logmeininc.com/oauth/authorize",
+							"type": "string"
+						},
+						{
+							"key": "redirect_uri",
+							"value": "https://oauth.pstmn.io/v1/callback",
+							"type": "string"
+						},
+						{
+							"key": "tokenName",
+							"value": "goto",
+							"type": "string"
+						},
+						{
+							"key": "addTokenTo",
+							"value": "header",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": ""
+				}
+			},
+			"response": []
+		}
+	]
+}
