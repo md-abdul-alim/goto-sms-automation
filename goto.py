@@ -28,25 +28,39 @@ def send_sms(phone_number, message):
 
         res = SMS_API_ENDPOINT.getresponse()
 
-        read_response = res.read()
+        response = res.read().decode("utf-8")
+        json_response = json.loads(response)
+
+        if 'errorCode' in response and json_response['errorCode'] == 'AUTHN_EXPIRED_TOKEN':
+            print(json_response['message'])
+            return 0
+        return 1
 
 
     except Exception as e:
+        return 0
         print(f"Error sending SMS: {str(e)}")
 
 def main():
     # Load the Excel file
     workbook = openpyxl.load_workbook('file.xlsx')
     sheet = workbook.active
-    count = 0
+    count, success, fail = 0, 0, 0
 
     # Iterate through rows and send SMS
     for row in sheet.iter_rows(min_row=2, values_only=True):
         phone_number, message = row
-        send_sms(phone_number, message)
-        count +=1
-        print("Sending Message - ", count)
-    print("Total Message sent: ", count)
+
+        if 'None' not in str(phone_number):
+            count +=1
+            status = send_sms(phone_number, message)
+
+            if status == 1:
+                success +=1
+            else:
+                fail +=1
+
+    print(f"Total Message sent: {count}, successful: {success}, failed: {fail}")
 
 if __name__ == "__main__":
     main()
